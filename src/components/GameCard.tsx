@@ -4,7 +4,7 @@ import { Brain, Calculator, BookOpen } from 'lucide-react';
 type GameCardProps = {
   title: string;
   description: string;
-  icon: 'math' | 'memory' | 'quiz';
+  icon: 'math' | 'memory' | 'quiz' | 'brain';
   onClick: () => void;
 };
 
@@ -17,6 +17,8 @@ const GameCard: React.FC<GameCardProps> = ({ title, description, icon, onClick }
         return <Brain className="w-8 h-8 text-purple-500" />;
       case 'quiz':
         return <BookOpen className="w-8 h-8 text-emerald-500" />;
+      case 'brain':
+        return <Brain className="w-8 h-8 text-blue-500" />;
     }
   };
 

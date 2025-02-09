@@ -5,18 +5,18 @@ import MemoryGame from './components/MemoryGame';
 import QuizGame from './components/QuizGame';
 import WordScramble from './components/WordScramble';
 import SpeedTyping from './components/SpeedTyping';
+import AdaptiveLearning from './components/AdaptiveLearning';
 import Profile, { ProfileData } from './components/Profile';
 import Leaderboard, { LeaderboardEntry } from './components/Leaderboard';
 import { GraduationCap, User, Trophy } from 'lucide-react';
 
-type GameType = 'menu' | 'math' | 'memory' | 'quiz' | 'wordscramble' | 'speedtyping' | 'leaderboard';
+type GameType = 'menu' | 'math' | 'memory' | 'quiz' | 'wordscramble' | 'speedtyping' | 'adaptive' | 'leaderboard';
 
 function App() {
   const [currentGame, setCurrentGame] = useState<GameType>('menu');
   const [showProfile, setShowProfile] = useState(false);
   const [profile, setProfile] = useState<ProfileData | null>(null);
   
-  // Mock leaderboard data - in a real app, this would come from a database
   const [leaderboard] = useState<LeaderboardEntry[]>([
     {
       username: "speedmaster",
@@ -53,11 +53,19 @@ function App() {
         return <WordScramble />;
       case 'speedtyping':
         return <SpeedTyping />;
+      case 'adaptive':
+        return <AdaptiveLearning />;
       case 'leaderboard':
         return <Leaderboard entries={leaderboard} />;
       default:
         return (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+            <GameCard
+              title="Adaptive Learning"
+              description="AI-powered personalized learning experience!"
+              icon="brain"
+              onClick={() => setCurrentGame('adaptive')}
+            />
             <GameCard
               title="Math Challenge"
               description="Practice arithmetic with fun, interactive problems!"
